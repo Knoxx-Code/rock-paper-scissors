@@ -97,7 +97,23 @@ function game()
         container.appendChild(playerChoiceBtn);
     });
 
+    //New game button. It resets everything and allows a new game to be played
+    const newGameBtn = document.querySelector('#new-game');
     
+    newGameBtn.addEventListener('click',()=>{
+        playerScore = 0;
+        compScore = 0;
+        winner = false;
+        playerScoreText.textContent = "Player: 0";
+        compScoreText.textContent = "Computer: 0";
+        winnerText.textContent = "";
+        compChoiceText.textContent = "";
+
+        playerChoiceBtn.forEach(button=>{
+           button.disabled = false;
+       });
+
+    });
    
 
 }

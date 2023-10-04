@@ -2,6 +2,8 @@
 const choices = ["rock", "paper", "scissors"];
 const container = document.querySelector('#container');
 
+let playerSelection;
+
 //Function that returns the computer choice
 function getComputerChoice() {
     randomIndex = Math.floor(Math.random() * choices.length);
@@ -32,34 +34,62 @@ function game()
 {
     let playerScore = 0;
     let compScore = 0;
-    let rounds = 1;
-    let playerSelection;
+   
+    
+ 
+    const winnerText = document.createElement('div');
+    const playerScoreText = document.querySelector('#player-score');
+    const compScoreText = document.querySelector('#comp-score');
+    const compChoiceText = document.createElement('div');
 
-    //For each choice create a button that will represent the player's choice upon clicking
-    choices.forEach(choice=>{
+
+  
+     //For each choice create a button that will represent the player's choice upon clicking
+     choices.forEach(choice=>{
         const playerChoiceBtn = document.createElement('button');
         playerChoiceBtn.textContent = choice;
         playerChoiceBtn.addEventListener('click',()=>{
             playerSelection = choice;
             console.log(`YOU CHOSE ${playerSelection}`);
+            
+            //Get the computer's selection
+            const computerSelection = getComputerChoice();
+            compChoiceText.textContent = `Computer chooses ${computerSelection}`;
+            container.appendChild(compChoiceText);
+
+            // Get the result for each round by calling the playround function
+            let result = playRound(playerSelection, computerSelection);
+
+            // Calculate the scores and display them in the html document
+            if (result.includes(" You win")){
+                playerScore += 1;
+                playerScoreText.textContent = `Player: ${playerScore}`;
+            } else if (result.includes("You lose"))
+            {
+                compScore +=1;
+                compScoreText.textContent = `Computer: ${compScore}`;
+            }
+
+            if (playerScore === 5)
+            {
+            
+                winnerText.textContent = "YOU WIN!";
+                
+            } 
+            else if(compScore === 5)
+            {
+                
+                winnerText.textContent = "COMPUTER WINS!";
+            }
+        
+            
+            container.appendChild(winnerText);
         });
         container.appendChild(playerChoiceBtn);
     });
 
-    // // Display overall score
-    // console.log(`PLAYER: ${playerScore} - COMPUTER: ${compScore}`);
+   
 
-    // // Checks to display overall result
-    // if (playerScore === compScore)
-    // {
-    //     console.log("IT'S A DRAW");
-    // }
-    // else if (compScore > playerScore){
-    //     console.log("COMPUTER WINS");
-    // }
-    // else {
-    //     console.log("PLAYER WINS");
-    // }
 }
 
 // Function call

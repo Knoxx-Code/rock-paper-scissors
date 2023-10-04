@@ -1,5 +1,6 @@
 //Array to store the choices in the game i.e Rock/Paper/Scissors
 const choices = ["rock", "paper", "scissors"];
+const container = document.querySelector('#container');
 
 //Function that returns the computer choice
 function getComputerChoice() {
@@ -32,58 +33,33 @@ function game()
     let playerScore = 0;
     let compScore = 0;
     let rounds = 1;
+    let playerSelection;
 
-    // Game loop. Consists if 5 rounds
-    for(rounds;rounds<=5;rounds++){
-        let playerSelection; 
-        let isValid = false;
+    //For each choice create a button that will represent the player's choice upon clicking
+    choices.forEach(choice=>{
+        const playerChoiceBtn = document.createElement('button');
+        playerChoiceBtn.textContent = choice;
+        playerChoiceBtn.addEventListener('click',()=>{
+            playerSelection = choice;
+            console.log(`YOU CHOSE ${playerSelection}`);
+        });
+        container.appendChild(playerChoiceBtn);
+    });
 
-        //Get the player's selection and check for invalid choices
-        while (!isValid)
-        {
-            playerSelection = prompt("Choose your weapon: Rock, Paper or Scissors: ");
-            if (choices.includes(playerSelection.toLowerCase()))
-            {
-                isValid = true;
-            }
-            else
-            {
-                console.log("Invalid choice. Select Rock, Paper or Scissors");
-            }
-        }
+    // // Display overall score
+    // console.log(`PLAYER: ${playerScore} - COMPUTER: ${compScore}`);
 
-        // Get the computer's selection
-        const computerSelection = getComputerChoice();
-
-        // Get the result for each round by calling the playround function
-        let result = playRound(playerSelection, computerSelection);
-
-        // Display result for each round
-        console.log(`Round ${rounds}: ${result}`);
-
-        // Calculate the player score
-        if (result.includes(" You win")){
-            playerScore += 1;
-        } else if (result.includes("You lose"))
-        {
-            compScore +=1;
-        }
-    }
-
-    // Display overall score
-    console.log(`PLAYER: ${playerScore} - COMPUTER: ${compScore}`);
-
-    // Checks to display overall result
-    if (playerScore === compScore)
-    {
-        console.log("IT'S A DRAW");
-    }
-    else if (compScore > playerScore){
-        console.log("COMPUTER WINS");
-    }
-    else {
-        console.log("PLAYER WINS");
-    }
+    // // Checks to display overall result
+    // if (playerScore === compScore)
+    // {
+    //     console.log("IT'S A DRAW");
+    // }
+    // else if (compScore > playerScore){
+    //     console.log("COMPUTER WINS");
+    // }
+    // else {
+    //     console.log("PLAYER WINS");
+    // }
 }
 
 // Function call

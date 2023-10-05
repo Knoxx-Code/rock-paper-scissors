@@ -5,12 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <script src="play.js" defer> </script>
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <div id="container">
-        <div id="player-score">Player: 0</div>
-        <div id="comp-score">Computer: 0</div>
-        <button id="new-game">New Game</button>
+    <div class="container">
+        <div class="header">ROCK PAPER SCISSORS</div>
+        <div class="title">Score: </div>
+        <div class="score-container">
+            <div id="player-score">Player: 0</div>
+            <div id="comp-score">Computer: 0</div>
+        </div>
+        <div class="choice-title">
+            Choose Your Weapon
+        </div>
+        <div class="choice-container">
+    
+        </div>
+        <div class="winner-display" style="display: none;">
+    
+        </div>
+        <div class="move-container">
+    
+        </div>
+        <div class="new-game-button">
+            <button id="new-game">New Game</button>
+        </div>
+        
+    </div>
+    <div class="footer">
+        Made by: Knoxx.<a href="https://github.com/Knoxx-Code" target="_blank">
+            <img id="github-link" src="assets/github-mark-white.png" alt="GitHub Link">
+          </a>
     </div>
 </body>
 </html>

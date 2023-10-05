@@ -1,6 +1,9 @@
 //Array to store the choices in the game i.e Rock/Paper/Scissors
 const choices = ["rock", "paper", "scissors"];
-const container = document.querySelector('#container');
+const container = document.querySelector('.choice-container');
+const moveContainer = document.querySelector('.move-container');
+const winnerDisplay = document.querySelector('.winner-display');
+const choiceTitle = document.querySelector('.choice-title');
 
 let playerSelection;
 
@@ -24,9 +27,9 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection == "paper" && computerSelection == "rock") ||
         (playerSelection == "scissors" && computerSelection == "paper")
     ) {
-        return `${playerSelection[0].toUpperCase() + playerSelection.slice(1) } beats ${computerSelection[0].toUpperCase() + computerSelection.slice(1)}. You win.`;
+        return "You win.";
     } else {
-        return `${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${playerSelection[0].toUpperCase() + playerSelection.slice(1)}. You lose. Computer wins.`;
+        return "You lose. Computer wins.";
     }
 }
 
@@ -39,7 +42,7 @@ function game()
     const winnerText = document.createElement('div');
     const playerScoreText = document.querySelector('#player-score');
     const compScoreText = document.querySelector('#comp-score');
-    const compChoiceText = document.createElement('div');
+    const choiceText = document.createElement('div');
 
      //For each choice create a button that will represent the player's choice upon clicking
     choices.forEach(choice=>{
@@ -49,8 +52,7 @@ function game()
 
         // Set the background image of the button
         playerChoiceBtn.style.backgroundImage = `url('assets/${choice}.png')`;
-        playerChoiceBtn.style.width = '100px';
-        playerChoiceBtn.style.height = '100px';
+        
         
         
         // Set alt text for accessibility
@@ -74,14 +76,15 @@ function game()
          
          //Get the computer's selection
          const computerSelection = getComputerChoice();
-         compChoiceText.textContent = `Computer chooses ${computerSelection}`;
-         container.appendChild(compChoiceText);
-
+         
          // Get the result for each round by calling the playround function
          let result = playRound(playerSelection, computerSelection);
 
+         choiceText.textContent = ` ${result.toUpperCase()} You chose ${playerSelection.toUpperCase()}. Computer chooses ${computerSelection.toUpperCase()}.`;
+         moveContainer.appendChild(choiceText);
+
          // Calculate the scores and display them in the html document
-         if (result.includes(" You win")){
+         if (result.includes("You win")){
              playerScore += 1;
              playerScoreText.textContent = `Player: ${playerScore}`;
          } else if (result.includes("You lose"))
@@ -90,21 +93,29 @@ function game()
              compScoreText.textContent = `Computer: ${compScore}`;
          }
 
+         
          if (playerScore === 5)
          {
          
              winnerText.textContent = "YOU WIN!";
              winner = true;
-             
+             container.style.display = 'none';
+             winnerDisplay.style.display = 'flex';
+             moveContainer.style.display = 'none';
+             choiceTitle.style.display = 'none';
          } 
          else if(compScore === 5)
          {
              
              winnerText.textContent = "COMPUTER WINS!";
              winner = true;
+             container.style.display = 'none';
+             winnerDisplay.style.display = 'flex';
+             moveContainer.style.display = 'none';
+             choiceTitle.style.display = 'none';
          }
          
-         container.appendChild(winnerText);   
+         winnerDisplay.appendChild(winnerText);   
         });
         container.appendChild(playerChoiceBtn);
     });
@@ -113,13 +124,18 @@ function game()
     const newGameBtn = document.querySelector('#new-game');
     
     newGameBtn.addEventListener('click',()=>{
+        //Reset scores and winner flag
         playerScore = 0;
         compScore = 0;
         winner = false;
+        //Reset the texts for
         playerScoreText.textContent = "Player: 0";
         compScoreText.textContent = "Computer: 0";
         winnerText.textContent = "";
-        compChoiceText.textContent = "";
+        choiceText.textContent = "";
+        container.style.display = 'flex';
+        moveContainer.style.display = 'flex';
+        choiceTitle.style.display = 'flex';
 
         playerChoiceBtn.forEach(button=>{
            button.disabled = false;

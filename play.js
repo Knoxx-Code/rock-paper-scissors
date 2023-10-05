@@ -35,10 +35,12 @@ function playRound(playerSelection, computerSelection) {
 
 function game()
 {
+    //Initialize player scores and winner flag
     let playerScore = 0;
     let compScore = 0;
     let winner = false;
 
+    //Create or get HTML elements to store winner message, scores and choices
     const winnerText = document.createElement('div');
     const playerScoreText = document.querySelector('#player-score');
     const compScoreText = document.querySelector('#comp-score');
@@ -52,9 +54,6 @@ function game()
 
         // Set the background image of the button
         playerChoiceBtn.style.backgroundImage = `url('assets/${choice}.png')`;
-        
-        
-        
         // Set alt text for accessibility
         playerChoiceBtn.setAttribute('alt', choice);
 
@@ -71,8 +70,8 @@ function game()
 
          }
 
+         // Variable that stores the player's choice
          playerSelection = choice;
-         console.log(`YOU CHOSE ${playerSelection}`);
          
          //Get the computer's selection
          const computerSelection = getComputerChoice();
@@ -80,6 +79,7 @@ function game()
          // Get the result for each round by calling the playround function
          let result = playRound(playerSelection, computerSelection);
 
+         // Shows the result of each round
          choiceText.textContent = ` ${result.toUpperCase()} You chose ${playerSelection.toUpperCase()}. Computer chooses ${computerSelection.toUpperCase()}.`;
          moveContainer.appendChild(choiceText);
 
@@ -93,12 +93,13 @@ function game()
              compScoreText.textContent = `Computer: ${compScore}`;
          }
 
-         
+         // Handling the winning cases
          if (playerScore === 5)
          {
          
              winnerText.textContent = "YOU WIN!";
              winner = true;
+             //Remove the buttons, and titles for a cleaner winning message
              container.style.display = 'none';
              winnerDisplay.style.display = 'flex';
              moveContainer.style.display = 'none';
@@ -109,6 +110,7 @@ function game()
              
              winnerText.textContent = "COMPUTER WINS!";
              winner = true;
+             //Remove the buttons, and titles for a cleaner winning message
              container.style.display = 'none';
              winnerDisplay.style.display = 'flex';
              moveContainer.style.display = 'none';
@@ -123,20 +125,23 @@ function game()
     //New game button. It resets everything and allows a new game to be played
     const newGameBtn = document.querySelector('#new-game');
     
+    // Actions when new game buttons is clicked
     newGameBtn.addEventListener('click',()=>{
         //Reset scores and winner flag
         playerScore = 0;
         compScore = 0;
         winner = false;
-        //Reset the texts for
+        //Reset the texts for the scores and other text
         playerScoreText.textContent = "Player: 0";
         compScoreText.textContent = "Computer: 0";
         winnerText.textContent = "";
         choiceText.textContent = "";
+        //Resets the styling for elements removed when displaying winning message
         container.style.display = 'flex';
         moveContainer.style.display = 'flex';
         choiceTitle.style.display = 'flex';
 
+        // Re-enables the disabled buttons that allow player to select choice
         playerChoiceBtn.forEach(button=>{
            button.disabled = false;
        });

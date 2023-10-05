@@ -44,7 +44,19 @@ function game()
      //For each choice create a button that will represent the player's choice upon clicking
     choices.forEach(choice=>{
         const playerChoiceBtn = document.createElement('button');
-        playerChoiceBtn.textContent = choice;
+        
+        playerChoiceBtn.classList.add('player-choice-buttons');
+
+        // Set the background image of the button
+        playerChoiceBtn.style.backgroundImage = `url('assets/${choice}.png')`;
+        playerChoiceBtn.style.width = '100px';
+        playerChoiceBtn.style.height = '100px';
+        
+        
+        // Set alt text for accessibility
+        playerChoiceBtn.setAttribute('alt', choice);
+
+        
         //Event listener to check for player's choice
         playerChoiceBtn.addEventListener('click',()=>{
 

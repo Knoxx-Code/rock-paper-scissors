@@ -14,5 +14,6 @@ How to Play
  - The first player to reach a score of 5 wins the game.
  - Click the "New Game" button to start a new game.
 
-Live Demo
-- Use this link to view the [Live Demo](https://knoxx-code.github.io/rock-paper-scissors/)
+
+Live Demo:
+ - [Play the game here](https://knoxx-code.github.io/rock-paper-scissors/)

@@ -13,3 +13,6 @@ How to Play
  - The computer's choice and game result (win, lose, or tie) will be shown, and scores will be updated.
  - The first player to reach a score of 5 wins the game.
  - Click the "New Game" button to start a new game.
+
+Live Demo
+Use this link to view the [Live Demo](https://knoxx-code.github.io/rock-paper-scissors/)

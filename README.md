@@ -15,4 +15,4 @@ How to Play
  - Click the "New Game" button to start a new game.
 
 Live Demo
-Use this link to view the [Live Demo](https://knoxx-code.github.io/rock-paper-scissors/)
+- Use this link to view the [Live Demo](https://knoxx-code.github.io/rock-paper-scissors/)
